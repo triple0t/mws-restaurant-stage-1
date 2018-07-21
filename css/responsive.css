@@ -1,0 +1,169 @@
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    .filter-options select {
+        width: 40%;
+        margin: 10px 15px;
+    }
+
+    /* #restaurants-list {
+        margin: 15px;
+        padding: 15px;
+    } */
+
+    /* TOD: add a background shadow to the list elements  */
+    #restaurants-list li {
+        margin: 0 0 25px 0;
+        padding: 0 0 25px 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    #restaurants-list li h1 {
+        margin: 30px 0 15px;
+    }
+
+    #restaurants-list li a {
+        margin: 25px 0 0;
+    }
+
+    #reviews-list li {
+        width: 100%;
+    }
+
+    .restaurant-details-box {
+        width: 100%;
+    }
+      
+    #restaurant-hours {
+        width: 100%;
+    }
+
+    #restaurant-container, #reviews-container {
+        padding: 30px 20px 80px;
+    }
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+    .filter-options select {
+        margin: 10px 20px;
+        width: 40%;
+    }
+    
+    #restaurants-list li {
+        margin: 0 0 25px 0;
+        padding: 0 0 25px 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    #reviews-list li {
+        width: 100%;
+    }
+
+    .restaurant-details-box {
+        width: 100%;
+    }
+      
+    #restaurant-hours {
+        width: 100%;
+    }
+}
+
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+    .filter-options select {
+        margin: 10px 23px;
+        width: 43%;
+    }
+    
+    /* TOD: add a background shadow to the list elements  */
+    #restaurants-list li {
+        margin: 0 0 25px 0;
+        padding: 0 0 25px 0;
+        text-align: center;
+        width: 49%;
+    }
+
+    #reviews-list li {
+        width: 100%;
+    }
+
+    #restaurant-hours {
+        padding: 0 0 0 30px;
+    }
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+    .filter-options select {
+        margin: 10px 24px;
+        width: 45%;
+    }
+
+    /* TOD: add a background shadow to the list elements  */
+    #restaurants-list li {
+        margin: 0 0 25px 0;
+        padding: 0 0 25px 0;
+        text-align: center;
+        width: 32%;
+    }
+
+    #restaurant-hours {
+        padding: 0 0 0 30px;
+    }
+    
+}
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  
+    .filter-options select {
+        margin: 10px 28px;
+        width: 45%;
+    }
+
+    ul, li {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        width: 1281px;
+    }
+
+    /* TOD: add a background shadow to the list elements  */
+    #restaurants-list li {
+        margin: 0 0 25px 0;
+        padding: 0 0 25px 0;
+        text-align: center;
+        width: 24.6%;
+    }
+
+    #restaurant-hours {
+        padding: 0 0 0 30px;
+    }
+    
+}

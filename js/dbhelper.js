@@ -19,11 +19,18 @@ class DBHelper {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', DBHelper.DATABASE_URL);
     xhr.onload = () => {
-      if (xhr.status === 200) { // Got a success response from server!
-        const json = JSON.parse(xhr.responseText);
-        const restaurants = json.restaurants;
-        callback(null, restaurants);
-      } else { // Oops!. Got an error from server.
+      if (xhr.status === 200) { 
+        // Got a success response from server!
+        try {
+          // we might not always get a json response type to need to check.
+          const json = JSON.parse(xhr.responseText);
+          const restaurants = json.restaurants;
+          callback(null, restaurants);
+        } catch (error) {
+          callback(error, null);
+        }
+      } else { 
+        // Oops!. Got an error from server.
         const error = (`Request failed. Returned status of ${xhr.status}`);
         callback(error, null);
       }
@@ -164,6 +171,7 @@ class DBHelper {
       url: DBHelper.urlForRestaurant(restaurant)
       })
       marker.addTo(newMap);
+      // marker.addTo(map);
     return marker;
   } 
   /* static mapMarkerForRestaurant(restaurant, map) {
