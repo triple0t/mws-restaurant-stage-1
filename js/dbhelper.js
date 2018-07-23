@@ -9,7 +9,9 @@ class DBHelper {
    */
   static get DATABASE_URL() {
     const port = 8000 // Change this to your server port
-    return `http://localhost:${port}/data/restaurants.json`;
+    const path = (location.hostname === 'triple0t.github.io') ? '/mws-restaurant-stage-1/' : `http://localhost:${port}/`;
+  
+    return `${path}data/restaurants.json`;
   }
 
   /**
