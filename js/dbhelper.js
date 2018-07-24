@@ -159,7 +159,9 @@ class DBHelper {
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    return (`/img/${restaurant.photograph}`);
+    const port = 8000;
+    const path = (location.hostname === 'triple0t.github.io') ? '/mws-restaurant-stage-1/' : `http://localhost:${port}/`;
+    return (`${path}img/${restaurant.photograph}`);
   }
 
   /**
