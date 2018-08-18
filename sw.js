@@ -2,7 +2,7 @@
 
 /* This acts has the cache name as well  */
 const app = 'mwa-stage1-';
-const version = '01'
+const version = '02'
 const appName = `${app + version}`;
 
 const path = (location.hostname === 'triple0t.github.io') ? '/mws-restaurant-stage-1/' : `/`;
@@ -17,6 +17,7 @@ const resources = {
         `${path}js/dbhelper.js`,
         `${path}js/main.js`,
         `${path}js/restaurant_info.js`,
+        `${path}js/swreg.js`,
         `${path}css/styles.css`,
         `${path}css/responsive.css`,
         `${path}img/1.jpg`,
@@ -28,7 +29,9 @@ const resources = {
         `${path}img/7.jpg`,
         `${path}img/8.jpg`,
         `${path}img/9.jpg`,
-        `${path}img/10.jpg`
+        `${path}img/10.jpg`,
+        'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon.png',
+        'https://unpkg.com/leaflet@1.3.1/dist/images/marker-shadow.png'
     ]
 };
 
@@ -41,7 +44,7 @@ self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(appName)
         .then(cache => cache.addAll(resources.app) )
-        .catch(err => handleError(err))
+        .catch(err => {handleError(err)})
         .then( () => self.skipWaiting() )
     )
 });
@@ -59,7 +62,7 @@ self.addEventListener('activate', event => {
                        cacheName != appName;
               }).map(cacheName => caches.delete(cacheName) )
             );
-          }).then( () => self.clients.claim() ).catch(err => handleError(err))
+          }).then( () => self.clients.claim() ).catch(err => {handleError(err)})
     );
 });
 
@@ -72,11 +75,18 @@ self.addEventListener('activate', event => {
  */
 self.addEventListener('fetch', event => {
     // const request = event.request;
-    // const requestUrl = new URL(event.request.url);
+    const requestUrl = new URL(event.request.url);
 
+    // Google Chrome Error
     /* if (request.cache === 'only-if-cached' && request.mode !== 'same-origin') {
         return;
     } */
+
+    // check for map images and do NOT add it to cache
+    if (requestUrl.origin === 'https://api.tiles.mapbox.com') {
+        // console.log('map not cached');
+        return;
+    }
 
     event.respondWith(
         caches.match(event.request)
@@ -87,18 +97,21 @@ self.addEventListener('fetch', event => {
                     cache.put(event.request, newres.clone())
                     return newres
                 })
-                .catch(err => handleError(err))
+                .catch(err => {handleError(err, 'item not found in cache, error with network request')})
             })
         })
-        .catch(Err => handleError(Err))
+        .catch(Err => {
+            handleError(Err, 'Error with caches match.');
+        })
     );
 });
 
 /**
  * Handle Errors
  * 
- * @param {Any} err 
+ * @param {Any} err
+ * @param {String} message Extra Error Message (Optional)
  */
-const handleError = err => {
-    console.log('[sw err] ', err);
+const handleError = (err, message = '') => {
+    console.error(`[sw err]: ${message} `, err);
 } 

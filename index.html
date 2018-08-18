@@ -17,12 +17,12 @@
 <body>
   <header>
     <nav>
-      <h1><a href="index.html" title="Home Page: Restaurant Reviews">Restaurant Reviews</a></h1>
+      <h2><a href="index.html" title="Home Page: Restaurant Reviews">Restaurant Reviews</a></h2>
     </nav>
   </header>
 
   <main id="maincontent">
-    <section id="map-container">
+    <section id="map-container" role="application">
       <div id="map"></div>
     </section>
 
@@ -48,19 +48,8 @@
   <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
   <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&libraries=places&callback=initMap"></script> -->
 
-  <script>
-    if ('serviceWorker' in navigator) {
-        if (location.hostname === 'triple0t.github.io') {
-            navigator.serviceWorker.register('sw.js', {scope: '/mws-restaurant-stage-1/'}).then(function() {
-                console.log('service worker registered for git pages');
-            })
-        } else {
-            navigator.serviceWorker.register('sw.js').then(function() {
-                console.log('service worker registered for others');
-            })
-        }
-    }
-  </script>
+  <!-- Service Worker Registration Script -->
+  <script src="js/swreg.js"></script>
 
   <footer id="footer">
     Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
