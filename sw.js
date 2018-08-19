@@ -2,7 +2,7 @@
 
 /* This acts has the cache name as well  */
 const app = 'mwa-stage1-';
-const version = '02'
+const version = '03'
 const appName = `${app + version}`;
 
 const path = (location.hostname === 'triple0t.github.io') ? '/mws-restaurant-stage-1/' : `/`;
